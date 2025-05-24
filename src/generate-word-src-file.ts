@@ -13,8 +13,8 @@ async function readWordListFromFile(path: string): Promise<string[]> {
 
 async function writeWordListToFile(words: string[], path: string): Promise<void> {
   const sorted = words.sort();
-  const json = JSON.stringify(sorted, null, 2);
-  await writeFile(path, json, 'utf-8');
+  const content = sorted.join('\n');
+  await writeFile(path, content, 'utf-8');
 }
 
 async function makeFilteredFile(inputPath: string, outputPath: string): Promise<void> {
@@ -23,4 +23,4 @@ async function makeFilteredFile(inputPath: string, outputPath: string): Promise<
   await writeWordListToFile(filteredWords, outputPath);
 }
 
-makeFilteredFile('./src/raw-words.txt', './src/5-letter-words.json');
+makeFilteredFile('./src/raw-words.txt', './src/5-letter-words.txt');

@@ -1,8 +1,8 @@
 {
-  "name": "haggler",
+  "name": "worder",
   "version": "1.0.0",
-  "description": "Basic webscraper for Thriftbooks to check if prices dip below a certain value",
-  "main": "build/index.js",
+  "description": "Helper for word games like Wordle or Zen Word",
+  "main": "src/cli.ts",
   "scripts": {
     "test": "jest",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
@@ -22,5 +22,6 @@
     "ts-jest": "^29.3.4"
   },
   "dependencies": {
+    "yargs": "^17.7.2"
   }
 }
