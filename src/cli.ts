@@ -11,7 +11,7 @@ const argv = await yargs(hideBin(process.argv))
     type: 'string',
     describe: 'Path to input word list file',
   })
-  .option('minLen', {
+  .option('len', {
     alias: 'l',
     type: 'number',
     describe: 'Exact allowed word length',
@@ -58,7 +58,7 @@ async function run() {
     .filter(Boolean);
 
   const filtered = filterWords(wordList, {
-    allowedLength: argv.minLen,
+    allowedLength: argv.len,
     minimumLetters: parsePairs(argv.minCharCnts),
     positionalLetters: parsePairs(argv.posChars),
   });
