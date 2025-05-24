@@ -6,40 +6,22 @@ interface FilterOptions {
   positionalLetters?: LetterPositionRequirement[];
 }
 export function filterWords(wordList: string[], opts: FilterOptions) {
-  const hasMinimumLetters = (word: string, minimumLetters: MinLetterRequirement[]) => {
-    for (const [letter, minCount] of minimumLetters) {
-      const strCount = countChar(word, letter);
-      if (strCount < minCount) return false;
-    }
+  const meetsMinimumLetters = (word: string, reqs: MinLetterRequirement[]) =>
+    reqs.every(([char, count]) => countChar(word, char) >= count);
 
-    return true;
-  };
-  const hasPositionalLetters = (word: string, positionalLetters: LetterPositionRequirement[]) => {
-    for (const [letter, position] of positionalLetters) {
-      if (position < 0 || position >= word.length || word[position] !== letter) return false;
-      if (word[position] !== letter) return false;
-    }
+  const meetsPositionalLetters = (word: string, reqs: LetterPositionRequirement[]) =>
+    reqs.every(([char, pos]) => pos >= 0 && pos < word.length && word[pos] === char);
 
-    return true;
-  };
-
-  return wordList.filter((word) => {
-    const downcaseWord = word.toLowerCase();
-    if (opts.allowedLength !== undefined && downcaseWord.length !== opts.allowedLength) {
+  return wordList.filter((rawWord) => {
+    const word = rawWord.toLowerCase();
+    if (opts.allowedLength !== undefined && word.length !== opts.allowedLength) return false;
+    if (opts.minimumLetters !== undefined && !meetsMinimumLetters(word, opts.minimumLetters))
       return false;
-    }
-    if (
-      opts.minimumLetters !== undefined &&
-      !hasMinimumLetters(downcaseWord, opts.minimumLetters)
-    ) {
-      return false;
-    }
     if (
       opts.positionalLetters !== undefined &&
-      !hasPositionalLetters(downcaseWord, opts.positionalLetters)
-    ) {
+      !meetsPositionalLetters(word, opts.positionalLetters)
+    )
       return false;
-    }
 
     return true;
   });
