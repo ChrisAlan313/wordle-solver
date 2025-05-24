@@ -1,5 +1,3 @@
-import { readFile, writeFile } from 'node:fs/promises';
-
 interface FilterOptions {
   allowedLength?: number;
 }
