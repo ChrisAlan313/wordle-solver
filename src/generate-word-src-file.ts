@@ -1,11 +1,14 @@
 // npx tsx src/generate-word-src-file.ts
 
 import { readFile, writeFile } from 'node:fs/promises';
-import { filterWords } from "./filter";
+import { filterWords } from './filter';
 
 async function readWordListFromFile(path: string): Promise<string[]> {
   const content = await readFile(path, 'utf-8');
-  return content.split('\n').map(w => w.trim()).filter(Boolean);
+  return content
+    .split('\n')
+    .map((w) => w.trim())
+    .filter(Boolean);
 }
 
 async function writeWordListToFile(words: string[], path: string): Promise<void> {
