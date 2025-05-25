@@ -1,6 +1,6 @@
 //#!/usr/bin/env tsx
 
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import { filterWords } from './filter';
 import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
@@ -24,7 +24,7 @@ const argv = await yargs(hideBin(process.argv))
   .option('posChars', {
     alias: 'p',
     type: 'array',
-    describe: 'Positional letters in the form letter:index (0-based)',
+    describe: 'Positional letters in the form letter:index (1-based)',
   })
   .help()
   .parse();

@@ -10,7 +10,7 @@ export function filterWords(wordList: string[], opts: FilterOptions) {
     reqs.every(([char, count]) => countChar(word, char) >= count);
 
   const meetsPositionalLetters = (word: string, reqs: LetterPositionRequirement[]) =>
-    reqs.every(([char, pos]) => pos >= 0 && pos < word.length && word[pos] === char);
+    reqs.every(([char, pos]) => word[pos - 1] === char);
 
   return wordList.filter((rawWord) => {
     const word = rawWord.toLowerCase();

@@ -31,7 +31,7 @@ describe('filterWords', () => {
   it('filters by position of a single letter', () => {
     const wordList = ['sue', 'Steve', 'Barbara', 'Tyrone', 'Chuckeee'];
     const expected = ['sue', 'Steve'];
-    const actual = filterWords(wordList, { positionalLetters: [['e', 2]] });
+    const actual = filterWords(wordList, { positionalLetters: [['e', 3]] });
 
     expect(actual).toEqual(expected);
   });
@@ -40,8 +40,8 @@ describe('filterWords', () => {
     const expected = ['Steve'];
     const actual = filterWords(wordList, {
       positionalLetters: [
-        ['e', 2],
-        ['v', 3],
+        ['e', 3],
+        ['v', 4],
       ],
     });
 

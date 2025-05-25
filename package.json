@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Helper for word games like Wordle or Zen Word",
   "main": "src/cli.ts",
-  "type": "module",
   "scripts": {
     "test": "jest",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
