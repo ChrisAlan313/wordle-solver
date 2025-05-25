@@ -1,6 +1,6 @@
 type MinLetterRequirement = [char: string, count: number];
 type LetterPositionRequirement = [char: string, position: number];
-interface FilterOptions {
+export interface FilterOptions {
   allowedLength?: number;
   minimumLetters?: MinLetterRequirement[];
   positionalLetters?: LetterPositionRequirement[];
